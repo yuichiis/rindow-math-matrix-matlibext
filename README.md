@@ -30,7 +30,7 @@ Requirements
 - Rindow OpenBLAS PHP extension v0.4.0 (and OpenBLAS 0.3.20 or later)
 - Rindow OpenCL PHP extension v0.2.0 (and OpenCL 1.1 or later)
 - Rindow CLBlast PHP extension v0.1.4 (and CLBlast 1.5.2 or later)
-- Windows 10/11 or Ubuntu 18.04 LTS
+- Windows 10/11 or Ubuntu 20.04 LTS or later
 
 ### Download pre-build binaries
 

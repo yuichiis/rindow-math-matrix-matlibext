@@ -10,11 +10,11 @@ use Rindow\OpenBLAS\Blas;
 use Rindow\OpenBLAS\Lapack;
 use Rindow\OpenBLAS\Math;
 
-use Rindow\Math\Matrix\Drivers\PhpBLAS\PhpBLASFactory;
-use Rindow\Math\Matrix\Drivers\PhpBLAS\PhpBuffer;
-use Rindow\Math\Matrix\Drivers\PhpBLAS\PhpBlas;
-use Rindow\Math\Matrix\Drivers\PhpBLAS\PhpLapack;
-use Rindow\Math\Matrix\Drivers\PhpBLAS\PhpMath;
+use Rindow\Math\Matrix\Drivers\MatlibPHP\PhpBLASFactory;
+use Rindow\Math\Matrix\Drivers\MatlibPHP\PhpBuffer;
+use Rindow\Math\Matrix\Drivers\MatlibPHP\PhpBlas;
+use Rindow\Math\Matrix\Drivers\MatlibPHP\PhpLapack;
+use Rindow\Math\Matrix\Drivers\MatlibPHP\PhpMath;
 
 use Rindow\Math\Matrix\Drivers\Service;
 
