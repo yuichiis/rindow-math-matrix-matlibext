@@ -8,8 +8,8 @@ use Rindow\Math\Matrix\Drivers\Service;
 
 class CLBlastFactory extends AbstractDriver
 {
-    protected string $LOWEST_VERSION = '0.1.2';
-    protected string $OVER_VERSION   = '0.2.0';
+    protected string $LOWEST_VERSION = '0.2.0';
+    protected string $OVER_VERSION   = '0.3.0';
 
     protected string $extName = 'rindow_clblast';
 

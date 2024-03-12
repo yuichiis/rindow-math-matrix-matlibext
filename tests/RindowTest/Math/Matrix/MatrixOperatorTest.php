@@ -70,13 +70,13 @@ class MatrixOperatorTest extends TestCase
         $this->assertEquals(NDArray::bool,$nd->dtype());
         $this->assertEquals([[true,true,true],[true,true,true]],$nd->toArray());
 
-        // auto type
-        $this->assertEquals(NDArray::int32,$mo->full([2,2],1)->dtype());
-        $this->assertEquals(NDArray::int32,$mo->full([2,2],0)->dtype());
-        $this->assertEquals(NDArray::float32,$mo->full([2,2],1.0)->dtype());
-        $this->assertEquals(NDArray::float32,$mo->full([2,2],0.0)->dtype());
-        $this->assertEquals(NDArray::bool,$mo->full([2,2],true)->dtype());
-        $this->assertEquals(NDArray::bool,$mo->full([2,2],false)->dtype());
+        // auto type capability is discontinued 
+        //$this->assertEquals(NDArray::int32,$mo->full([2,2],1)->dtype());
+        //$this->assertEquals(NDArray::int32,$mo->full([2,2],0)->dtype());
+        //$this->assertEquals(NDArray::float32,$mo->full([2,2],1.0)->dtype());
+        //$this->assertEquals(NDArray::float32,$mo->full([2,2],0.0)->dtype());
+        //$this->assertEquals(NDArray::bool,$mo->full([2,2],true)->dtype());
+        //$this->assertEquals(NDArray::bool,$mo->full([2,2],false)->dtype());
     }
 
     public function testCreateZeros()

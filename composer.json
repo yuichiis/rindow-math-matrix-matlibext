@@ -6,13 +6,13 @@
     "license": "BSD-3-Clause",
     "require": {
         "php": "^8.1|^8.2|^8.3",
-        "interop-phpobjects/polite-math": "~1.0.5",
+        "interop-phpobjects/polite-math": "~1.0.6",
         "rindow/rindow-math-matrix": "~2.0.0"
     },
     "require-dev": {
         "ext-rindow_openblas": "~0.4.0",
         "ext-rindow_opencl": "~0.2.0",
-        "ext-rindow_clblast": "~0.1.4"
+        "ext-rindow_clblast": "~0.2.0"
     },
     "suggest": {
         "rindow/rindow-math-plot": "for OpenCL tunning"
