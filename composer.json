@@ -1,7 +1,7 @@
 {
     "name": "rindow/rindow-math-matrix",
     "type": "library",
-    "description": "The fundamental package for scientific matrix operation",
+    "description": "Rindow Math Matrix's Drivers for Matlib with PHP extensions",
     "keywords": ["rindow","math","matrix","N-dimension","operation"],
     "license": "BSD-3-Clause",
     "require": {

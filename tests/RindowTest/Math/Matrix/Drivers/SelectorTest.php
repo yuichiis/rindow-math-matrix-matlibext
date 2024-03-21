@@ -20,41 +20,61 @@ class SelectorTest extends TestCase
     public function testDefault()
     {
         $ext = null;
+        $extLevel = 0;
         if(class_exists('Rindow\Math\Matrix\Drivers\MatlibExt\MatlibExt')) {
             $ext = new MatlibExt();
         }
-        $ffi = new MatlibFFI();
+        $ffi = null;
+        $ffiLevel = 0;
+        if(class_exists('Rindow\Math\Matrix\Drivers\MatlibFFI\MatlibFFI')) {
+            $ffi = new MatlibFFI();
+        }
         $php = new MatlibPhp();
         $selector = $this->newSelector();
         $service = $selector->select();
-        if($ffi->serviceLevel()<=Service::LV_BASIC && 
-          ($ext!==null && $ext->serviceLevel()>Service::LV_BASIC) ) {
-            $this->assertInstanceOf(MatlibExt::class,$service);
-        } elseif($service->serviceLevel()>=Service::LV_ADVANCED) {
+        if($ext != null) {
+            $extLevel = $ext->serviceLevel();
+        }
+        if($ffi != null) {
+            $ffiLevel = $ffi->serviceLevel();
+        }
+
+        if($ffiLevel==0 && $extLevel==0) {
+            $this->assertInstanceOf(MatlibPhp::class,$service);
+        } elseif($ffiLevel>$extLevel) {
             $this->assertInstanceOf(MatlibFFI::class,$service);
         } else {
-            $this->assertInstanceOf(MatlibPhp::class,$service);
+            $this->assertInstanceOf(MatlibExt::class,$service);
         }
     }
 
     public function testCatalog()
     {
+        $classFFI = 'Rindow\Math\Matrix\Drivers\MatlibFFI\MatlibFFI';
+        $classExt = 'Rindow\Math\Matrix\Drivers\MatlibExt\MatlibExt';
+        $ffi = null;
+        if(class_exists($classFFI)) {
+            $ffi = new MatlibFFI();
+        }
         $ext = null;
-        if(class_exists('Rindow\Math\Matrix\Drivers\MatlibExt\MatlibExt')) {
+        if(class_exists($classExt)) {
             $ext = new MatlibExt();
         }
-        $ffi = new MatlibFFI();
         $php = new MatlibPhp();
-        if(($ext!==null) &&
-            ($ext->serviceLevel()>$ffi->serviceLevel())) {
-            $truesrv = $ext;
-        } else {
+
+        $truesrv = $php;
+        $level = Service::LV_BASIC;
+        if($ffi!==null &&
+            $ffi->serviceLevel()>$level) {
             $truesrv = $ffi;
+            $level = $ffi->serviceLevel();
         }
-        if($truesrv->serviceLevel()<=Service::LV_BASIC) {
-            $truesrv = $php;
+        if($ext!==null &&
+            $ext->serviceLevel()>$level) {
+            $truesrv = $ext;
+            $level = $ext->serviceLevel();
         }
-        $catalog = [MatlibFFI::class,MatlibExt::class,MatlibPhp::class];
+        $catalog = [$classFFI,$classExt,MatlibPhp::class];
         $selector = $this->newSelector($catalog);
         $service = $selector->select();
         $this->assertInstanceOf(get_class($truesrv),$service);
