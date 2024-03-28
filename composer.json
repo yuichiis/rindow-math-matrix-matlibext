@@ -1,5 +1,5 @@
 {
-    "name": "rindow/rindow-math-matrix",
+    "name": "rindow/rindow-math-matrix-matlibext",
     "type": "library",
     "description": "Rindow Math Matrix's Drivers for Matlib with PHP extensions",
     "keywords": ["rindow","math","matrix","N-dimension","operation"],
@@ -11,9 +11,6 @@
         "ext-rindow_openblas": "~0.4.0",
         "ext-rindow_opencl": "~0.2.0",
         "ext-rindow_clblast": "~0.2.0"
-    },
-    "suggest": {
-        "rindow/rindow-math-plot": "for OpenCL tunning"
     },
     "autoload": {
         "psr-4": {
