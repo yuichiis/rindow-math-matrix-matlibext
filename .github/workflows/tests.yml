@@ -27,17 +27,22 @@ jobs:
       - name: Checkout codes
         uses: "actions/checkout@v4"
 
-      - name: Install Libs
+      - name: Install OpenBLAS
         run: |
           sudo apt install -y libopenblas-base liblapacke
-          sh clblast-packdeb.sh
-          sudo apt install ./clblast_1.6.2-1+ubuntu22.04_amd64.deb
           wget https://github.com/rindow/rindow-openblas/releases/download/0.4.0/rindow-openblas-php8.3_0.4.0-1+ubuntu22.04_amd64.deb
           sudo apt install -y ./rindow-openblas-php8.3_0.4.0-1+ubuntu22.04_amd64.deb
-          wget https://github.com/rindow/rindow-opencl/releases/download/0.2.0/rindow-opencl-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
-          sudo apt install -y ./rindow-opencl-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
-          wget https://github.com/rindow/rindow-clblast/releases/download/0.2.0/rindow-clblast-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
-          sudo apt install -y ./rindow-clblast-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
+
+      #- name: Install OpenCL
+      #  run: |
+      #    sudo apt install -y clinfo
+      #    sudo apt install -y pocl-opencl-icd
+      #    sh clblast-packdeb.sh
+      #    sudo apt install ./clblast_1.6.2-1+ubuntu22.04_amd64.deb
+      #    wget https://github.com/rindow/rindow-opencl/releases/download/0.2.0/rindow-opencl-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
+      #    sudo apt install -y ./rindow-opencl-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
+      #    wget https://github.com/rindow/rindow-clblast/releases/download/0.2.0/rindow-clblast-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
+      #    sudo apt install -y ./rindow-clblast-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
 
       #- name: Composer
       #  uses: php-actions/composer@v6
