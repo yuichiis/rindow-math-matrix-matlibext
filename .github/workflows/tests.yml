@@ -24,23 +24,20 @@ jobs:
           tools: composer, phpunit:10.5
           #ini-values: "memory_limit=512M"
 
+      - name: Checkout codes
+        uses: "actions/checkout@v4"
+
       - name: Install Libs
         run: |
           sudo apt install -y libopenblas-base liblapacke
+          sh clblast-packdeb.sh
+          sudo apt install ./clblast_1.6.2-1+ubuntu22.04_amd64.deb
           wget https://github.com/rindow/rindow-openblas/releases/download/0.4.0/rindow-openblas-php8.3_0.4.0-1+ubuntu22.04_amd64.deb
           sudo apt install -y ./rindow-openblas-php8.3_0.4.0-1+ubuntu22.04_amd64.deb
           wget https://github.com/rindow/rindow-opencl/releases/download/0.2.0/rindow-opencl-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
           sudo apt install -y ./rindow-opencl-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
           wget https://github.com/rindow/rindow-clblast/releases/download/0.2.0/rindow-clblast-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
           sudo apt install -y ./rindow-clblast-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
-
-      - name: Checkout codes
-        uses: "actions/checkout@v4"
-
-      - name: Checkout math-matrix tests
-        run: |
-          ( cd .. && git clone https://github.com/rindow/rindow-math-matrix )
-          ( cd ../rindow-math-matrix && git checkout 2.0.2 )
 
       #- name: Composer
       #  uses: php-actions/composer@v6
