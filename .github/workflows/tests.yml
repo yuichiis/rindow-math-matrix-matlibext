@@ -15,14 +15,14 @@ jobs:
         php: ['8.3']
   
     steps:
-      #- name: Setup PHP ${{ matrix.php }}
-      #  uses: shivammathur/setup-php@v2
-      #  with:
-      #    php-version: ${{ matrix.php }}
-      #    # PHP Extras
-      #    coverage: none
-      #    tools: composer, phpunit:10.5
-      #    #ini-values: "memory_limit=512M"
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          # PHP Extras
+          coverage: none
+          tools: composer, phpunit:10.5
+          #ini-values: "memory_limit=512M"
 
       - name: Checkout codes
         uses: "actions/checkout@v4"
@@ -44,22 +44,22 @@ jobs:
       #    wget https://github.com/rindow/rindow-clblast/releases/download/0.2.0/rindow-clblast-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
       #    sudo apt install -y ./rindow-clblast-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
 
-      - name: Composer
-        uses: php-actions/composer@v6
-        with:
-          php_version: ${{ matrix.php }}
-          php_extensions: rindow_openblas
-      
       #- name: Composer
-      #  run: composer update
+      #  uses: php-actions/composer@v6
+      #  with:
+      #    php_version: ${{ matrix.php }}
+      #    php_extensions: rindow_openblas
+      
+      - name: Composer
+        run: composer update
 
-      - name: PHPUnit Tests
-        uses: php-actions/phpunit@v3
-        with:
-          configuration: tests/phpunit.xml
-          version: 10.5
-          php_version: ${{ matrix.php }}
-          php_extensions: rindow_openblas
+      #- name: PHPUnit Tests
+      #  uses: php-actions/phpunit@v3
+      #  with:
+      #    configuration: tests/phpunit.xml
+      #    version: 10.5
+      #    php_version: ${{ matrix.php }}
+      #    php_extensions: rindow_openblas
 
-      #- name: PHPUnit Tests.
-      #  run: phpunit -c tests
+      - name: PHPUnit Tests.
+        run: phpunit -c tests
