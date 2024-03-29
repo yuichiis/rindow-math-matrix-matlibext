@@ -51,13 +51,6 @@ You can perform very fast N-dimensional array operations in conjunction
   - [Rindow-Matlib](https://github.com/rindow/rindow-matlib/releases)
   - [CLBlast](https://github.com/CNugteren/CLBlast/releases)
 
-*Note:*
-
-If you are using Windows, you must Download the version of OpenBLAS binaries that correspond to the rindow_openblas binaries. The compatible OpenBLAS Library release number is included in the filename of the rindow-openblas pre-built archive file. If you use the wrong OpenBLAS release number DLL, it will not work properly.
-
-Also rindow_clblast is.
-
-
 ### Acceleration with GPU
 
 You can use GPU acceleration on OpenCL.
