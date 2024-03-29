@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Rindow\\Math\\Matrix\\Drivers\\MatlibExt": "src/"
+            "Rindow\\Math\\Matrix\\Drivers\\MatlibExt\\": "src/"
         }
     },
     "bin": [ "bin/clinfo-ext.bat" ]
