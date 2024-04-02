@@ -37,8 +37,10 @@ jobs:
       #  run: |
       #    sudo apt install -y clinfo
       #    sudo apt install -y pocl-opencl-icd
+      #    wget https://github.com/rindow/rindow-clblast-ffi/releases/download/1.0.0/clblast-packdeb.zip
+      #    unzip clblast-packdeb.zip
       #    sh clblast-packdeb.sh
-      #    sudo apt install ./clblast_1.6.2-1+ubuntu22.04_amd64.deb
+      #    sudo apt install ./clblast_1.6.2_amd64.deb
       #    wget https://github.com/rindow/rindow-opencl/releases/download/0.2.0/rindow-opencl-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
       #    sudo apt install -y ./rindow-opencl-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
       #    wget https://github.com/rindow/rindow-clblast/releases/download/0.2.0/rindow-clblast-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
