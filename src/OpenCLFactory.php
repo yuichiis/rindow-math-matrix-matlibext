@@ -54,8 +54,8 @@ class OpenCLFactory extends AbstractDriver
 
     public function CommandQueue(
         Context $context,
-        long $deviceId=null,
-        long $properties=null,
+        int $deviceId=null,
+        int $properties=null,
     ) : CommandQueue
     {
         $deviceId = $deviceId ?? 0;
