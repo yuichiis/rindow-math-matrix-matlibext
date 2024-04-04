@@ -6,7 +6,7 @@ use Rindow\Math\Matrix\Drivers\AbstractMatlibService;
 
 class MatlibExt extends AbstractMatlibService
 {
-    protected $name = 'matlib_ext';
+    protected string $name = 'matlib_ext';
     
     public function __construct(
         object $bufferFactory=null,
