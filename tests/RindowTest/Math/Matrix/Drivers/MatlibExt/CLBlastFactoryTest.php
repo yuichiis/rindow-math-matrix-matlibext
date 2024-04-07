@@ -21,6 +21,20 @@ class CLBlastFactoryTest extends TestCase
         $this->queue = new \stdClass();
         $this->service = new class implements Service {
             public function serviceLevel() : int {}
+            public function info() : string {}
+            public function name() : string {}
+            public function blas(int $level=null) : object {}
+            public function lapack(int $level=null) : object {}
+            public function math(int $level=null) : object {}
+            public function buffer(int $level=null) : object {}
+            public function openCL() : object {}
+            public function blasCL(object $queue) : object {}
+            public function mathCL(object $queue) : object {}
+            public function mathCLBlast(object $queue) : object {}
+            /**
+             * @param array<string,mixed> $options
+             */
+            public function createQueue(array $options=null) : object {}
         };
     }
 
