@@ -63,6 +63,9 @@ class OpenCLFactory extends AbstractDriver
         return new CommandQueue($context, $deviceId, $properties);
     }
 
+    /**
+     * @param string|array<mixed> $source
+     */
     public function Program(
         Context $context,
         string|array $source,   // string or list of something
