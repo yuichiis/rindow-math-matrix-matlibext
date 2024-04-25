@@ -806,6 +806,16 @@ class LinearAlgebraCLTest extends ORGTest
         $this->markTestSkipped('Unsuppored function on clblast');
     }
 
+    public function testRotmg()
+    {
+        $this->markTestSkipped('Unsuppored function on clblast');
+    }
+
+    public function testRotm()
+    {
+        $this->markTestSkipped('Unsuppored function on clblast');
+    }
+
     //public function testHardware()
     //{
     //    $mo = $this->newMatrixOperator();
