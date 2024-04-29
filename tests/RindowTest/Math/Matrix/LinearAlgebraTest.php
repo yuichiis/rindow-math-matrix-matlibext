@@ -525,6 +525,42 @@ class LinearAlgebraTest extends TestCase
         }
     }
 
+    public function testRotmg()
+    {
+        $mo = $this->newMatrixOperator();
+        $la = $this->newLA($mo);
+
+        // givens rotation
+        $ax = $la->array(0,dtype:NDArray::float32);  // pi/2 rotation
+        $ay = $la->array(2,dtype:NDArray::float32);  // pi/2 rotation
+
+        [$d1,$d2,$b1,$p] = $la->rotmg($ax,$ay);
+        //echo "d1=".$mo->toString($d1)."\n";
+        //echo "d2=".$mo->toString($d2)."\n";
+        //echo "b1=".$mo->toString($b1)."\n";
+        //echo "p=".$mo->toString($p)."\n";
+
+        $this->assertTrue($la->isclose($la->toNDArray($d1),$mo->array(1)));
+        $this->assertTrue($la->isclose($la->toNDArray($d2),$mo->array(1)));
+        $this->assertTrue($la->isclose($la->toNDArray($b1),$mo->array(2)));
+        $this->assertTrue($la->isclose($la->toNDArray($p),$mo->array([1,0,0,0,0])));
+    }
+
+    public function testRotm()
+    {
+        $mo = $this->newMatrixOperator();
+        $la = $this->newLA($mo);
+
+        $x = $la->array([0,1,2,3],dtype:NDArray::float32);
+        $y = $la->array([1,0,2,3],dtype:NDArray::float32);
+        $p = $la->array([1,0,0,0,0],dtype:NDArray::float32);
+        $la->rotm($x,$y,$p);
+        //echo "x=".$mo->toString($x,format:'%6.3f')."\n";
+        //echo "y=".$mo->toString($y,format:'%6.3f')."\n";
+        $this->assertTrue($la->isclose($la->toNDArray($x),$mo->array([1,0,2,3])));
+        $this->assertTrue($la->isclose($la->toNDArray($y),$mo->array([0,-1,-2,-3])));
+    }
+
     /**
     *    Y := X
     *    X := Y

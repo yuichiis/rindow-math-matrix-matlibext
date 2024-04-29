@@ -6,40 +6,20 @@ use Rindow\Math\Matrix\Drivers\AbstractMatlibService;
 
 class MatlibExt extends AbstractMatlibService
 {
-    protected $name = 'matlib_ext';
+    protected string $name = 'matlib_ext';
     
-    public function __construct(
-        object $bufferFactory=null,
-        object $mathFactory=null,
-        object $openblasFactory=null,
-        object $openclFactory=null,
-        object $clblastFactory=null,
-        object $blasCLFactory=null,
-        object $mathCLFactory=null,
-        object $bufferCLFactory=null,
-    )
+    protected function injectDefaultFactories() : void
     {
-        $openblasFactory = $openblasFactory ?? new OpenBLASFactory();
-        $bufferFactory = $bufferFactory ?? $openblasFactory;
-        $mathFactory = $mathFactory ?? $openblasFactory;
+        $this->openblasFactory ??= new OpenBLASFactory();
+        $this->bufferFactory ??= $this->openblasFactory;
+        $this->mathFactory ??= $this->openblasFactory;
 
-        $openclFactory = $openclFactory ?? new OpenCLFactory();
-        $bufferCLFactory = $bufferCLFactory ?? $openclFactory;
+        $this->openclFactory ??= new OpenCLFactory();
+        $this->bufferCLFactory ??= $this->openclFactory;
 
-        $clblastFactory = $clblastFactory ?? new CLBlastFactory();
-        $blasCLFactory = $blasCLFactory ?? $clblastFactory;
+        $this->clblastFactory ??= new CLBlastFactory();
+        $this->blasCLFactory ??= $this->clblastFactory;
 
-        $mathCLFactory = $mathCLFactory ?? new MatlibCLFactory();
-
-        parent::__construct(
-            bufferFactory:$bufferFactory,
-            openblasFactory:$openblasFactory,
-            mathFactory:$mathFactory,
-            openclFactory:$openclFactory,
-            clblastFactory:$clblastFactory,
-            blasCLFactory:$blasCLFactory,
-            mathCLFactory:$mathCLFactory,
-            bufferCLFactory:$bufferCLFactory,
-        );
+        $this->mathCLFactory ??= new MatlibCLFactory();
     }
 }

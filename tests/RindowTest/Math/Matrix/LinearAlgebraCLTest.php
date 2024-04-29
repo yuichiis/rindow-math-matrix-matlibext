@@ -25,7 +25,7 @@ use Rindow\Math\Matrix\Drivers\CLBlast;
 
 class TestMatrixOperator extends MatrixOperator
 {
-    protected function createLinearAlgebraCL(array $options=null)
+    protected function createLinearAlgebraCL(array $options=null) : object
     {
         $queue = $this->service->createQueue($options);
         $la = new TestLinearAlgebraCL($queue,service:$this->service);
@@ -802,6 +802,16 @@ class LinearAlgebraCLTest extends ORGTest
     }
 
     public function testRot()
+    {
+        $this->markTestSkipped('Unsuppored function on clblast');
+    }
+
+    public function testRotmg()
+    {
+        $this->markTestSkipped('Unsuppored function on clblast');
+    }
+
+    public function testRotm()
     {
         $this->markTestSkipped('Unsuppored function on clblast');
     }

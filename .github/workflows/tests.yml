@@ -8,6 +8,8 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-22.04
+    env:
+      extblas: 0.4.1
 
     strategy:
       fail-fast: true
@@ -29,16 +31,20 @@ jobs:
 
       - name: Install OpenBLAS
         run: |
-          sudo apt install -y libopenblas-base liblapacke
-          wget https://github.com/rindow/rindow-openblas/releases/download/0.4.0/rindow-openblas-php8.3_0.4.0-1+ubuntu22.04_amd64.deb
-          sudo apt install -y ./rindow-openblas-php8.3_0.4.0-1+ubuntu22.04_amd64.deb
+          FILENAME=rindow-openblas-${extblas}-linux-amd64
+          sudo apt install -y libopenblas0-openmp liblapacke
+          wget https://github.com/rindow/rindow-openblas/releases/download/${extblas}/${FILENAME}.zip
+          unzip ${FILENAME}.zip
+          sudo apt install -y ./${FILENAME}/php${{ matrix.php }}/rindow-openblas-php${{ matrix.php }}_${extblas}_amd64.deb
 
       #- name: Install OpenCL
       #  run: |
       #    sudo apt install -y clinfo
       #    sudo apt install -y pocl-opencl-icd
+      #    wget https://github.com/rindow/rindow-clblast-ffi/releases/download/1.0.0/clblast-packdeb.zip
+      #    unzip clblast-packdeb.zip
       #    sh clblast-packdeb.sh
-      #    sudo apt install ./clblast_1.6.2-1+ubuntu22.04_amd64.deb
+      #    sudo apt install ./clblast_1.6.2_amd64.deb
       #    wget https://github.com/rindow/rindow-opencl/releases/download/0.2.0/rindow-opencl-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
       #    sudo apt install -y ./rindow-opencl-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
       #    wget https://github.com/rindow/rindow-clblast/releases/download/0.2.0/rindow-clblast-php8.3_0.2.0-1+ubuntu22.04_amd64.deb
@@ -52,6 +58,12 @@ jobs:
       
       - name: Composer
         run: composer update
+
+      - name: PHP Static Analysys
+        uses: php-actions/phpstan@v3
+        with:
+          php_version: ${{ matrix.php }}
+          path: src/
 
       #- name: PHPUnit Tests
       #  uses: php-actions/phpunit@v3

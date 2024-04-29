@@ -54,8 +54,8 @@ class OpenCLFactory extends AbstractDriver
 
     public function CommandQueue(
         Context $context,
-        long $deviceId=null,
-        long $properties=null,
+        int $deviceId=null,
+        int $properties=null,
     ) : CommandQueue
     {
         $deviceId = $deviceId ?? 0;
@@ -63,6 +63,9 @@ class OpenCLFactory extends AbstractDriver
         return new CommandQueue($context, $deviceId, $properties);
     }
 
+    /**
+     * @param string|array<mixed> $source
+     */
     public function Program(
         Context $context,
         string|array $source,   // string or list of something
