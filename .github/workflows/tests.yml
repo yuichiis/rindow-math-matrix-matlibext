@@ -8,6 +8,8 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-22.04
+    env:
+      extblas: 0.4.1
 
     strategy:
       fail-fast: true
@@ -29,9 +31,11 @@ jobs:
 
       - name: Install OpenBLAS
         run: |
+          FILENAME=rindow-openblas-${extblas}-linux-amd64
           sudo apt install -y libopenblas0-openmp liblapacke
-          wget https://github.com/rindow/rindow-openblas/releases/download/0.4.0/rindow-openblas-php8.3_0.4.0-1+ubuntu22.04_amd64.deb
-          sudo apt install -y ./rindow-openblas-php8.3_0.4.0-1+ubuntu22.04_amd64.deb
+          wget https://github.com/rindow/rindow-openblas/releases/download/${extblas}/${FILENAME}.zip
+          unzip ${FILENAME}.zip
+          sudo apt install -y ./${FILENAME}/php${{ matrix.php }}/rindow-openblas-php${{ matrix.php }}_${extblas}_amd64.deb
 
       #- name: Install OpenCL
       #  run: |
