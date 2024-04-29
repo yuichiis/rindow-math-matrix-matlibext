@@ -39,7 +39,7 @@ jobs:
           unzip ${FILENAME}.zip
           sudo apt install -y ./${FILENAME}/php${{ matrix.php }}/rindow-openblas-php${{ matrix.php }}_${extblas}_amd64.deb
 
-      - name: Install OpenCL
+      - name: Install OpenCL for phpstan only
         run: |
           sudo apt install -y clinfo
           sudo apt install -y pocl-opencl-icd
@@ -60,11 +60,15 @@ jobs:
       #    php_extensions: rindow_openblas
       
       - name: Composer
-        run: |
-          composer require phpstan/phpstan
+        run: composer require phpstan/phpstan
 
       - name: PHP Static Analysys
         run: vendor/bin/phpstan
+
+      - name: Uninstall OpenCL for pocl-opencl error on phpunit 
+        run: |
+          sudo apt remove rindow-clblast-php${{ matrix.php }}
+          sudo apt remove rindow-opencl-php${{ matrix.php }}
 
       #- name: PHPUnit Tests
       #  uses: php-actions/phpunit@v3
